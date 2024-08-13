@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const App = ({faq:{question,answer}}) => {
+const App = ({faq:{question,answer,isOpen,id},togglehandle}) => {
 
-  const [open, setOpen] = useState(false);
+ 
   const handleToggle = () => {
-    setOpen(!open);
+    togglehandle(id);
   };
   return (
     <div className="">
@@ -12,14 +12,14 @@ const App = ({faq:{question,answer}}) => {
         className="border p-5 border-black select-none active:scale-95 duration-100 flex justify-between items-center "
         onClick={handleToggle}
       >
-        <h1 className={`text-3xl ${open === false ? "":'font-bold'}`}>{question}</h1>
+        <h1 className={`text-3xl ${isOpen === false ? "":'font-bold'}`}>{question}</h1>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className={`size-6 ${open === false ? "": "rotate-180 duration-200"}`}
+          className={`size-6 ${isOpen === false ? "": "rotate-180 duration-200"}`}
         >
           <path
             strokeLinecap="round"
@@ -28,7 +28,7 @@ const App = ({faq:{question,answer}}) => {
           />
         </svg>
       </div>
-      <p className={`p-5 bg-slate-400  ${open === false ? "hidden " : ""} mb-2`}>
+      <p className={`p-5 bg-slate-400  ${isOpen === false ? "hidden " : ""} mb-2`}>
        {answer}
       </p>
     </div>
